@@ -40,7 +40,7 @@ function Formulario () {
           console.error(error);
         }
       };
-      
+
       const calcularSaldos = (dadosTransferencias) => {
         let total = 0;
         let totalPorPeriodo = 0;
@@ -51,6 +51,16 @@ function Formulario () {
     
         setSaldoTotal(total);
         setSaldoPorPeriodo(totalPorPeriodo);
+      };
+      const renderTransferencias = () => {
+        return transferencias.map(transferencia => (
+          <tr key={transferencia.id}>
+            <td>{transferencia.dataTransferencia}</td>
+            <td>{transferencia.valor}</td>
+            <td>{transferencia.tipo}</td>
+            <td>{transferencia.nomeOperadorTransacao}</td>
+          </tr>
+        ));
       };
 
 }
