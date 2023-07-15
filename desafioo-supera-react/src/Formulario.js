@@ -52,6 +52,7 @@ function Formulario () {
         setSaldoTotal(total);
         setSaldoPorPeriodo(totalPorPeriodo);
       };
+
       const renderTransferencias = () => {
         return transferencias.map(transferencia => (
           <tr key={transferencia.id}>
@@ -62,6 +63,49 @@ function Formulario () {
           </tr>
         ));
       };
+      return (
+        <div className="pesquisa-transferencias">
+          <h2>Pesquisa de Transferências</h2>
+          <div className="form-group">
+            <label>Data de Início:</label>
+            <input className="form-control" type="date" value={dataInicio} onChange={e => setDataInicio(e.target.value)} />
+          </div>
+          <div className="form-group">
+            <label>Data de Fim:</label>
+            <input className="form-control" type="date" value={dataFim} onChange={e => setDataFim(e.target.value)} />
+          </div>
+          <div className="form-group">
+            <label>Nome do Operador:</label>
+            <input type="text" className="form-control" value={operador} onChange={e => setOperador(e.target.value)} />
+          </div>
+          <button className="pesquisa-button" onClick={fetchData}>Pesquisar</button>
+    
+          {transferencias.length > 0 ? (
+            <div>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Dados</th>
+                    <th>Valências</th>
+                    <th>Tipo</th>
+                    <th>Nome do Operador</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {renderTransferencias()}
+                </tbody>
+              </table>
+    
+              <div className="saldos">
+                <p>Saldo Total: {saldoTotal}</p>
+              </div>
+            </div>
+          ) : (
+            <p className="no-results">Nenhum resultado encontrado.</p>
+          )}
+        </div>
+      );
+    };
 
-}
+
 export default Formulario;
