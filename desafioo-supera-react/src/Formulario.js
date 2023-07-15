@@ -36,6 +36,7 @@ function Formulario () {
             return { ...transferencia, dataTransferencia: dataTransferenciaFormatada };
           });
           setTransferencias(data);
+          calcularSaldos(data);
         } catch (error) {
           console.error(error);
         }
