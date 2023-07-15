@@ -40,6 +40,18 @@ function Formulario () {
           console.error(error);
         }
       };
+      
+      const calcularSaldos = (dadosTransferencias) => {
+        let total = 0;
+        let totalPorPeriodo = 0;
+    
+        for (let i = 0; i < dadosTransferencias.length; i++) {
+          total += dadosTransferencias[i].valor;
+        }
+    
+        setSaldoTotal(total);
+        setSaldoPorPeriodo(totalPorPeriodo);
+      };
 
 }
 export default Formulario;
