@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import moment from 'moment';
@@ -11,18 +11,22 @@ function Formulario () {
     const [saldoTotal, setSaldoTotal] = useState(0);
     const [saldoPorPeriodo, setSaldoPorPeriodo] = useState(0);
 
+    useEffect(() => {
+      fetchData();
+    }, []);
+  
+
     const fetchData = async () => {
         const url = 'http://localhost:8080/api/transferencias';
     
         const params = {};
-        
-        if (dataInicio) {
-          const dataInicioFormatada = moment(dataInicio, 'DD/MM/YYYY').format('YYYY-MM-DD');
-          params.startDate = dataInicioFormatada;
-        }
+       if (dataInicio) {
+          const dataFimFormatada = moment(dataInicio, 'YYYY-MM-DD').format('DD/MM/YYYY');
+          params.dataTransferencia = dataFimFormatada;
+        };
         if (dataFim) {
           const dataFimFormatada = moment(dataFim, 'DD/MM/YYYY').format('YYYY-MM-DD');
-          params.endDate = dataFimFormatada;
+          params.dataTransferencia = dataFimFormatada;
         }
         if (operador) {
           params.nomeOperadorTransacao = operador;
